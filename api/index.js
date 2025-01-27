@@ -3,16 +3,28 @@ import dotenv from 'dotenv';
 import mongoose from "mongoose";
 dotenv.config();
 
+import authRoute from "./routes/auth.route.js";
+import bodyParser from "body-parser";
+
 const app = express();
 
-
-mongoose.connect(process.env.MONGODB_URI)
+const dbUri = process.env.MONDODBURI;
+mongoose.connect(dbUri)
     .then(()=>{
         console.log(`Database connected!`)
     })
     .catch((err)=>{
         console.log(err)
     });
+
+//middleware
+app.use(express.json())
+app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: '2mb'}));
+
+
+//routes
+app.use('/api/auth', authRoute)
 
 
 const port = process.env.PORT || 5000
