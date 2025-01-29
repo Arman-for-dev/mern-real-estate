@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    avatar: {
+        type: String,
+        default: "https://avatar.iran.liara.run/public/boy?username=wygv"
+    },
     password: {
         type: String,
         required: true,
