@@ -1,10 +1,17 @@
 import express from "express";
 import dotenv from 'dotenv';
-import mongoose from "mongoose";
 dotenv.config();
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+import cors from 'cors';
+import morgan from 'morgan';
+
+
+
 
 import authRoute from "./routes/auth.route.js";
-import bodyParser from "body-parser";
+import userRoute from "./routes/user.route.js";
+import listingRoute from "./routes/listing.route.js";
 
 const app = express();
 
@@ -21,10 +28,14 @@ mongoose.connect(dbUri)
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json({limit: '2mb'}));
+app.use(cors())
+app.use(morgan('dev'));
 
 
 //routes
 app.use('/api/auth', authRoute)
+app.use('/api/user', userRoute)
+app.use('/api/listings', listingRoute)
 
 
 app.use((err, req, res, next)=>{
