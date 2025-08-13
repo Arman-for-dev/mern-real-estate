@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { useSelector } from "react-redux"
-
+import {Link} from "react-router-dom";
 function Profile() {
   const {currentUser} = useSelector(state=>state.user)
   const fileRef = useRef();
@@ -18,6 +18,9 @@ function Profile() {
         <input type="email" placeholder="email" id="email" className="border p-3 rounded-lg" />
         <input type="password" placeholder="password" id="password" className="border p-3 rounded-lg" />
         <button className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">update</button>
+        <Link className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95" to={'/create-listing'}>
+          Create Listing
+        </Link>
       </form>
       <div className="flex justify-between mt-5">
         <span className="text-red-700 cursor-pointer">Delete Account</span>
