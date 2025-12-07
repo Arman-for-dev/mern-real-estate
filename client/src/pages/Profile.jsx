@@ -5,7 +5,6 @@ function Profile() {
   const {currentUser} = useSelector(state=>state.user)
   const fileRef = useRef();
   const [file, setFile] = useState(undefined)
-  console.log(file)
 
 
   return (
